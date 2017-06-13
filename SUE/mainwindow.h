@@ -14,6 +14,15 @@
 #include <QThread>
 #include <mmapGpio.h>
 
+class Sleeper: public QThread
+{
+    public:
+        static void msleep(int ms)
+        {
+            QThread::msleep(ms);
+        }
+};
+
 class mainwindow : public QWidget
 {
 	Q_OBJECT
@@ -100,10 +109,27 @@ private:
 		}
 	}
 
+	void OpenDoor(){
+		for(int i=0; i<90; i++){
+			rpiGpio->writePinHigh(14);
+            Sleeper::msleep(800);
+			rpiGpio->writePinLow(14);
+            Sleeper::msleep(800);
+		}		
+	}
+	void CloseDoor(){
+		for(int i=0; i<90; i++){
+			rpiGpio->writePinHigh(14);
+            Sleeper::msleep(400);
+			rpiGpio->writePinLow(14);
+            Sleeper::msleep(400);
+		}	
+	}
+
 	void Inting(char a){
 		int c = a - '0';
 
-        //rpiGpio->writePinHigh(4);
+        rpiGpio->writePinHigh(4);
 
         if(num == 3){
 			b12->setEnabled(1);

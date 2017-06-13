@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QWidget>
 #include "mainwindow.h"
+#include "mmapGpio.h"
 
 int main(int argc, char *argv[])
 {

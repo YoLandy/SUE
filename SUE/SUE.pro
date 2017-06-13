@@ -25,7 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    dialog.cpp \
+    mmapGpio.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    mmapGpio.h
+
+FORMS += \
+    dialog.ui
